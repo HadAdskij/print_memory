@@ -13,6 +13,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 
+typedef unsigned char u_char;
+
 void	print_memory(const void *addr, size_t size)
 {
 	char		str[16];
@@ -25,8 +27,8 @@ void	print_memory(const void *addr, size_t size)
 	i = -1;
 	while (++i < size)
 	{
-		ch[0] = a[i] / 16 + (a[i] / 16 > 9 ? 87 : 48);
-		ch[1] = a[i] % 16 + (a[i] % 16 > 9 ? 87 : 48);
+		ch[0] = (u_char)a[i] / 16 + ((u_char)a[i] / 16 > 9 ? 87 : 48);
+		ch[1] = (u_char)a[i] % 16 + ((u_char)a[i] % 16 > 9 ? 87 : 48);
 		write(1, ch, 2);
 		if (i % 2 == 1)
 			write(1, " ", 1);
